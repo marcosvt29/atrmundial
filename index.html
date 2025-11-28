@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lojão Agro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- FACHADA -->
+  <header class="fachada">
+    <img src="fachada.png" class="fachada-img" alt="">
+  </header>
+
+  <!-- MENU FIXO -->
+  <nav class="menu">
+    <ul>
+      <li><button class="menu-btn active" data-cat="all">🌾 Todos</button></li>
+      <li><button class="menu-btn" data-cat="racao">🐄 1850</button></li>
+      <li><button class="menu-btn" data-cat="sementes"> 1890</button></li>
+      <li><button class="menu-btn" data-cat="fertilizante">🧪 1930</button></li>
+      <li><button class="menu-btn" data-cat="epi">🦺 1950</button></li>
+      <li><button class="menu-btn" data-cat="ferramenta">🛠 1960</button></li>
+      <li><button class="menu-btn" data-cat="medicamento">2001</button></li>
+    </ul>
+  </nav>
+
+  <!-- CONTROLS -->
+  <section class="controls">
+    <input id="searchInput" type="search" placeholder="Buscar produto...">
+    <div id="resultMeta" class="result-meta"></div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <main>
+    <h2 class="section-title">Produtos</h2>
+    <section class="grid" id="prodGrid"></section>
+    <div id="emptyState" class="empty-state" hidden>Nenhum produto encontrado.</div>
+  </main>
+
+  <!-- MODAL DE PRODUTO -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <img id="modalImg">
+      <h2 id="modalName"></h2>
+      <p id="modalPrice"></p>
+      <button id="modalWaBtn" class="btn">Pedir pelo WhatsApp</button>
+    </div>
+  </div>
+
+
+
+  <footer class="site-footer">
+    © <span id="ano"></span> ATR MUNDIAL — Todos os direitos reservados
+  </footer>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<button id="waFab" class="whatsapp-fab">
+  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="11" fill="#22C55E"/>
+  <path d="M17.6 14.4c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.2-.55.07-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.49-1.39-1.74-.15-.26-.02-.4.11-.52.12-.12.26-.32.4-.48.13-.16.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.12-.57-1.37-.78-1.88-.21-.51-.42-.44-.57-.45-.15-.01-.32-.01-.49-.01-.17 0-.45.06-.68.32-.23.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.81 2.77 4.4 3.9.62.27 1.1.43 1.48.55.62.2 1.18.17 1.63.1.5-.07 1.47-.6 1.68-1.17.21-.57.21-1.06.15-1.17-.06-.11-.23-.18-.48-.3z" fill="white"/>
+</svg>
+
+        
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
