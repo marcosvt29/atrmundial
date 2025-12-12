@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- ⚡ O título será substituído dinamicamente pelo script -->
+  <title>Carregando produto...</title>
+
+  <!-- ⚡ Descrição dinâmica -->
+  <meta name="description" content="Detalhes do produto — ATR MUNDIAL" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- ⚡ Open Graph será atualizado dinamicamente -->
+  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="ATR MUNDIAL" />
+  <meta property="og:title" content="Carregando produto..." />
+  <meta property="og:description" content="Detalhes do produto — ATR MUNDIAL" />
+  <meta property="og:image" content="" id="ogImage" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Canonical dinâmico -->
+  <link rel="canonical" href="" id="canonicalLink" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="wrap product-wrap">
+
+    <a href="index.html" class="back-link">← Voltar à loja</a>
+
+    <!-- ⚡ Conteúdo será preenchido pelo JS -->
+    <main class="product-page classic" id="productPage" aria-live="polite">
+      <div class="loading">
+        <p>Carregando produto...</p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="ano"></span> ATR MUNDIAL — Todos os direitos reservados
+    </footer>
+
+  </div>
+
+  <script>
+    // Atualiza o ano automaticamente
+    document.getElementById("ano").textContent = new Date().getFullYear();
+
+    // Atualiza canonical dinamicamente
+    document.getElementById("canonicalLink").href = window.location.href;
+  </script>
+
+  <!-- ⚡ Seu JS geral -->
+  <script src="script.js" defer></script>
+</body>
+</html>

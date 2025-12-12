@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lojão Agro — Loja</title>
   <meta name="description" content="Produtos agrícolas e ferramentas — Lojão Agro. Compre com segurança, frete e PIX disponíveis.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
+  <div class="wrap">
+    <!-- FACHADA -->
+    <header class="fachada" role="banner">
+      <img src="imagens/fachada.jpg" class="fachada-img" alt="Fachada Lojão Agro">
+    </header>
 
-  <!-- FACHADA -->
-  <header class="fachada">
-    <img src="imagens/fachada.jpg" class="fachada-img" alt="Fachada Lojão Agro">
-  </header>
+    <!-- NAV / FILTROS -->
+    <nav class="menu" role="navigation" aria-label="Categorias">
+      <ul>
+        <!-- NOTE: data-cat usa slugs consistentes -->
+        <li><button class="menu-btn active" data-cat="all" aria-pressed="true">🌾 Todos</button></li>
+        <li><button class="menu-btn" data-cat="relógio">Relógios</button></li>
+        <li><button class="menu-btn" data-cat="premium">Premium</button></li>
+        <li><button class="menu-btn" data-cat="casual">Casual</button></li>
+        <li><button class="menu-btn" data-cat="esportivo">Esportivo</button></li>
+      </ul>
+    </nav>
 
-  <!-- MENU FIXO -->
-  <nav class="menu">
-    <ul>
-      <li><button class="menu-btn active" data-cat="all">🌾 Todos</button></li>
-      <li><button class="menu-btn" data-cat="racao">Rolex</button></li>
-      <li><button class="menu-btn" data-cat="sementes">Omega</button></li>
-      <li><button class="menu-btn" data-cat="fertilizante">Cartier</button></li>
-      <li><button class="menu-btn" data-cat="epi">Bulgari</button></li>
-      <li><button class="menu-btn" data-cat="ferramenta">Tissot</button></li>
-      <li><button class="menu-btn" data-cat="medicamento">Patek Philippe</button></li>
-    </ul>
-  </nav>
+    <!-- CONTROLS -->
+    <section class="controls" aria-label="Busca e resultados">
+      <label for="searchInput" class="sr-only">Buscar produto</label>
+      <input id="searchInput" type="search" placeholder="Buscar produto..." aria-label="Buscar produto">
+      <div id="resultMeta" class="result-meta" aria-live="polite"></div>
+    </section>
 
-  <!-- CONTROLS -->
-  <section class="controls">
-    <input id="searchInput" type="search" placeholder="Buscar produto...">
-    <div id="resultMeta" class="result-meta"></div>
-  </section>
+    <!-- PRODUTOS -->
+    <main>
+      <h2 class="section-title">Relógios</h2>
+      <section class="grid" id="prodGrid" aria-live="polite" aria-label="Lista de produtos"></section>
+      <div id="emptyState" class="empty-state" hidden>Nenhum produto encontrado.</div>
 
-  <!-- PRODUTOS -->
-  <main>
-    <h2 class="section-title">Produtos</h2>
-    <section class="grid" id="prodGrid"></section>
-    <div id="emptyState" class="empty-state" hidden>Nenhum produto encontrado.</div>
+      <nav class="pagination" id="pagination" aria-label="Paginação"></nav>
+    </main>
 
-    <div class="pagination" id="pagination"></div>
-  </main>
-
-  <footer class="site-footer">
-    © <span id="ano"></span> ATR MUNDIAL — Todos os direitos reservados
-  </footer>
-</div>
-
-<!-- CART PANEL -->
-<aside id="cartPanel" class="cart-panel" aria-hidden="true">
-  <button id="closeCart" class="close-cart">×</button>
-  <h3>Carrinho</h3>
-  <div id="cartItems"></div>
-  <div class="cart-footer">
-    <div id="cartTotal">Total: R$ 0,00</div>
-    <button id="checkoutBtn" class="btn">Finalizar (WhatsApp)</button>
+    <footer class="site-footer" role="contentinfo">
+      © <span id="ano"></span> ATR MUNDIAL — Todos os direitos reservados
+    </footer>
   </div>
-</aside>
 
-<!-- BUTTONS FLOAT -->
-<button id="waFab" class="whatsapp-fab" aria-label="Abrir WhatsApp">
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="12" r="11" fill="#22C55E"/>
-  <path d="M17.6 14.4c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.12-.57.12-.17.25-.65.8-.8.97-.15.17-.3.2-.55.07-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.49-1.39-1.74-.15-.26-.02-.4.11-.52.12-.12.26-.32.4-.48.13-.16.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.12-.57-1.37-.78-1.88-.21-.51-.42-.44-.57-.45-.15-.01-.32-.01-.49-.01-.17 0-.45.06-.68.32-.23.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.81 2.77 4.4 3.9.62.27 1.1.43 1.48.55.62.2 1.18.17 1.63.1.5-.07 1.47-.6 1.68-1.17.21-.57.21-1.06.15-1.17-.06-.11-.23-.18-.48-.3z" fill="white"/>
-</svg>
-</button>
+  <!-- CART PANEL -->
+  <aside id="cartPanel" class="cart-panel" aria-hidden="true" aria-label="Carrinho">
+    <button id="closeCart" class="close-cart" aria-label="Fechar carrinho">×</button>
+    <h3>Carrinho</h3>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div id="cartTotal">Total: R$ 0,00</div>
+      <button id="checkoutBtn" class="btn" aria-label="Finalizar pedido (WhatsApp)">Finalizar (WhatsApp)</button>
+    </div>
+  </aside>
 
-<button id="cartFab" class="cart-fab" aria-label="Abrir carrinho">🛒<span id="cartCount" class="cart-count">0</span></button>
+  <!-- FLOAT BUTTONS -->
+  <button id="waFab" class="whatsapp-fab" aria-label="Abrir WhatsApp">
+    <!-- ícone inline para acessibilidade -->
+    <span class="sr-only">Abrir WhatsApp</span>
+    🟢
+  </button>
 
-<script src="script.js"></script>
+  <button id="cartFab" class="cart-fab" aria-label="Abrir carrinho" title="Carrinho">
+    🛒<span id="cartCount" class="cart-count">0</span>
+  </button>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
