@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relógio do Jardel — Lojão Agro</title>
+  <meta name="description" content="Relógio casual com bom custo-benefício.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html">← Voltar à loja</a>
+  <div class="product-hero" id="productHero">
+    <div>
+      <div class="zoom-wrapper">
+        <img id="heroImg" src="imagens/07.jpeg" alt="Relógio do Jardel">
+      </div>
+      <div class="gallery" id="gallery">
+        <img src="imagens/07.jpeg">
+      </div>
+    </div>
+
+    <div>
+      <h1 id="prodName">Relógio do Jardel</h1>
+      <div id="prodPrice" class="price">R$ 16,00</div>
+      <p id="prodDesc">Relógio casual com bom custo-benefício.</p>
+
+      <h4>Especificações</h4>
+      <table id="specTable" style="width:100%;border-collapse:collapse;margin-bottom:12px">
+        <tr><td style="padding:6px;border-bottom:1px solid #eee;font-weight:700">Material</td><td style="padding:6px;border-bottom:1px solid #eee">Aço</td></tr>
+        <tr><td style="padding:6px;border-bottom:1px solid #eee;font-weight:700">Movimento</td><td style="padding:6px;border-bottom:1px solid #eee">Quartz</td></tr>
+        <tr><td style="padding:6px;border-bottom:1px solid #eee;font-weight:700">Diâmetro</td><td style="padding:6px;border-bottom:1px solid #eee">38mm</td></tr>
+      </table>
+
+      <div>
+        <label>Quantidade: <input id="qtyInput" type="number" value="1" min="1" style="width:70px"></label>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button id="addCartBtn" class="btn">Adicionar ao carrinho</button>
+        <button id="buyNowBtn" class="btn">Comprar (WhatsApp)</button>
+      </div>
+
+      <h4 style="margin-top:14px">Meios de pagamento</h4>
+      <ul>
+        <li>PIX — pagamento instantâneo</li>
+        <li>Boleto bancário</li>
+        <li>Cartão — parcelamento simulado</li>
+      </ul>
+
+      <h4 style="margin-top:12px">Calcular frete</h4>
+      <label>CEP: <input id="cepInput" placeholder="00000-000"></label>
+      <button id="calcFreteBtn">Calcular</button>
+      <div id="freteResult"></div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">© <span id="ano"></span> ATR MUNDIAL</footer>
+</div>
+
+<script>
+  const WHATS = '5599999999999';
+  const product = { id: 6, name: "Relógio do Jardel", price: 16.0, priceLabel: 'R$ 16,00', img: 'imagens/06.jpeg', images: ["imagens/06.jpeg"], description: `Relógio casual com bom custo-benefício.`, specs: {"Material": "Aço", "Movimento": "Quartz", "Diâmetro": "38mm"} };
+
+  document.getElementById('prodName').textContent = product.name;
+  document.getElementById('prodPrice').textContent = product.priceLabel;
+  document.getElementById('prodDesc').textContent = product.description;
+  document.getElementById('heroImg').src = product.img;
+
+  const gallery = document.getElementById('gallery');
+  product.images.forEach((src, idx)=>{ const img = document.createElement('img'); img.src = src; if(idx===0) img.classList.add('active'); img.onclick = ()=>{ document.getElementById('heroImg').src = src; document.querySelectorAll('.gallery img').forEach(i=>i.classList.remove('active')); img.classList.add('active'); }; gallery.appendChild(img); });
+
+  const specTable = document.getElementById('specTable');
+  for(const k in product.specs){ const tr = document.createElement('tr'); tr.innerHTML = `<td style="padding:6px;border-bottom:1px solid #eee;font-weight:700">${k}</td><td style="padding:6px;border-bottom:1px solid #eee">${product.specs[k]}</td>`; specTable.appendChild(tr); }
+
+  document.getElementById('addCartBtn').onclick = ()=>{ const qty = parseInt(document.getElementById('qtyInput').value) || 1; const cart = JSON.parse(localStorage.getItem('lojão_cart_v1')||'[]'); const found = cart.find(i=>i.id===product.id); if(found){ found.qty += qty; } else { cart.push({id:product.id,name:product.name,price:product.price,qty:qty}); } localStorage.setItem('lojão_cart_v1',JSON.stringify(cart)); alert('Adicionado ao carrinho'); };
+
+  document.getElementById('buyNowBtn').onclick = ()=>{ const qty = parseInt(document.getElementById('qtyInput').value) || 1; const msg = `Olá! Quero comprar ${qty}x ${product.name} — ${product.priceLabel}`; window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`); };
+
+  document.getElementById('calcFreteBtn').onclick = ()=>{ const cep = document.getElementById('cepInput').value.replace(/\D/g,''); if(!cep || cep.length!==8){ document.getElementById('freteResult').textContent = 'Informe um CEP válido (8 dígitos).'; return; } const first = parseInt(cep[0]); const price = first<=3? 'R$ 20,00 (Sedex - 5 dias)':'R$ 12,00 (PAC - 8 dias)'; document.getElementById('freteResult').textContent = `Frete estimado: ${price}`; };
+
+  document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
